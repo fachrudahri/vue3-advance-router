@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { reactive, toRefs } from "vue"
+import { reactive, toRefs } from "vue";
 export default {
   async setup() {
     const data = reactive({
