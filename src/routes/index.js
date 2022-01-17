@@ -37,7 +37,10 @@ const routes = [
       {
         path: 'posts',
         name: "Posts",
-        component: Posts
+        component: Posts,
+        beforeEnter: (to, from) => {
+          console.log('saya mau coba masuk ke posts nih')
+        }
       },
       {
         path: 'posts/:id',
@@ -51,6 +54,21 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = JSON.parse(localStorage.getItem('authenticated'))
+  if(to.name !== 'Login' && !isAuthenticated) {
+    next({name: 'Login'})
+    return
+  }
+  if(to.name === 'Login' && isAuthenticated) {
+    next({name: 'Home'})
+    return
+  }
+  else next()
+  return
 })
 
 export default router
