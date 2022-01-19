@@ -4,10 +4,11 @@
     Homepage
   </div>
   <p>total Like: {{ likes }}</p>
+  <pre>{{ credential }}</pre>
 </template>
 
 <script>
-import { computed, ref, onMounted } from "vue"
+import { computed, ref, onMounted, compile } from "vue"
 import { useStore } from "vuex"
 export default {
   setup() {
@@ -18,11 +19,15 @@ export default {
       return store.state.totalLikes
     })
 
+    const credential = computed(() => {
+      return store.state.credential
+    })
+
     onMounted(() => {
       username.value = store.state.username
     })
 
-    return { likes, username }
+    return { likes, username, credential }
   }
 }
 </script>

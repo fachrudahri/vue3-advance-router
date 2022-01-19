@@ -25,6 +25,7 @@ export default {
       localStorage.setItem('authenticated', true)
       store.commit('setUsername', username.value)
       store.commit('setPassword', password.value)
+      store.dispatch('getCredential')
       router.push({ name: 'Home'})
     }
 

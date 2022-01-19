@@ -5,7 +5,8 @@ export const store = createStore({
     return {
       totalLikes: 0,
       username: '',
-      password: ''
+      password: '',
+      credential: {}
     }
   },
 
@@ -18,6 +19,18 @@ export const store = createStore({
     },
     setPassword(state, value) {
       state.password = value
+    },
+    setCredential(state, payload) {
+      state.credential = payload
+    }
+  },
+
+  actions: {
+    async getCredential({ commit }) {
+      const response = await fetch('https://randomuser.me/api')
+      const { results } = await response.json()
+
+      commit('setCredential', results[0])
     }
   }
 })
