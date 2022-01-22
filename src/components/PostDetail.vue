@@ -21,7 +21,7 @@ export default {
     const store = useStore()
 
     const addLike = () => {
-      store.commit('increment')
+      store.commit('post/increment')
     }
 
     const id = route.params.id

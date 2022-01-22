@@ -1,40 +1,10 @@
 import { createStore } from "vuex";
+import post from './modules/post';
+import user from "./modules/user";
 
 export const store = createStore({
-  state() {
-    return {
-      totalLikes: 0,
-      username: '',
-      password: '',
-      credential: {}
-    }
-  },
-  getters: {
-    fakeTotalLikes(state) {
-      return state.totalLikes + 100
-    }
-  },
-  mutations: {
-    increment(state) {
-      state.totalLikes++
-    },
-    setUsername(state, value) {
-      state.username = value
-    },
-    setPassword(state, value) {
-      state.password = value
-    },
-    setCredential(state, payload) {
-      state.credential = payload
-    }
-  },
-
-  actions: {
-    async getCredential({ commit }) {
-      const response = await fetch('https://randomuser.me/api')
-      const { results } = await response.json()
-
-      commit('setCredential', results[0])
-    }
+  modules: {
+    post,
+    user
   }
 })

@@ -23,9 +23,9 @@ export default {
 
     const login = () => {
       localStorage.setItem('authenticated', true)
-      store.commit('setUsername', username.value)
-      store.commit('setPassword', password.value)
-      store.dispatch('getCredential')
+      store.commit('user/setUsername', username.value)
+      store.commit('user/setPassword', password.value)
+      store.dispatch('user/getCredential')
       router.push({ name: 'Home'})
     }
 

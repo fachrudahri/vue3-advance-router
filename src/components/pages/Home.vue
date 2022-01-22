@@ -49,13 +49,23 @@ export default {
     }
   },
   computed: {
-    ...mapState(['username', 'credential']),
-    ...mapState({ likes: 'totalLikes' }),
-    ...mapGetters(['fakeTotalLikes'])
+    ...mapState({
+    username: (state) => state.user.username,
+    credential: (state) => state.user.credential,
+    likes: (state) => state.post.totalLikes
+    }),
+    ...mapGetters({
+      fakeTotalLikes: "post/fakeTotalLikes"
+    })
   },
   methods: {
-    ...mapMutations(['increment', 'setUsername']),
-    ...mapActions(['getCredential'])
+    ...mapMutations({
+      increment: "post/increment",
+      setUsername: "user/setUsername",
+    }),
+    ...mapActions({
+      getCredential: "user/getCredential"
+    })
   }
 }
 </script>
