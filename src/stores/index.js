@@ -9,7 +9,11 @@ export const store = createStore({
       credential: {}
     }
   },
-
+  getters: {
+    fakeTotalLikes(state) {
+      return state.totalLikes + 100
+    }
+  },
   mutations: {
     increment(state) {
       state.totalLikes++
